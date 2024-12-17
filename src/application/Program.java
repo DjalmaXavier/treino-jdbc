@@ -15,22 +15,26 @@ public class Program {
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 
-		Department obj = new Department(2, null);
-
 		DepartmentDaoJDBC dc = DaoFactory.createDepartmentDao();
 		SellerDaoJDBC sel = DaoFactory.createSellerDao();
 
-		List<Seller> sellers = sel.findByDepartment(obj);
-		List<Seller> allSellers = sel.findAll();
 
+		Department teste = dc.findById(2);
+		
+		List<Seller> sellers = sel.findByDepartment(teste);
+		List<Seller> allSellers = sel.findAll();
+		List<Department> allDepart = dc.findAll();
+		
+		
 		Seller seler = sel.findById(2);
-		System.out.println(seler.toString());
 		
 		for (Seller test : allSellers) {
 			System.out.println(test);
 		}
 		
-		sel.update(seler);
+		for (Department test : allDepart) {
+			System.out.println(test);
+		}
 		
 		DB.closeConnection();
 		
